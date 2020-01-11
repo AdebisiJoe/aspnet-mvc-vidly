@@ -1,0 +1,32 @@
+﻿@model vidly.ViewModels.RandomMovieViewModel
+@{
+                /**/
+
+                ViewBag.Title = "Random";
+                Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    var className = Model.Movie.Count > 0 ? "popular" : null;
+}
+
+
+
+@if (Model.Movie.Count == 0)
+{
+    <text>No movie for now</text>
+}
+else
+{
+
+<table class="table table-hover">
+    @foreach (var movie in Model.Movie)
+    {
+        <tr>
+            <td>@movie.Name </td>
+        </tr>
+    }
+
+</table>
+
+}
