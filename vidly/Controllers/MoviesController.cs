@@ -66,16 +66,23 @@ namespace vidly.Controllers
             return View(viewModel);
         }
         [Route("movies/{id}")]
-        public ActionResult MovieDetails(int Id) {
-            var movie = new List<Movie>()
+        public ActionResult MovieDetails(int id)
+        {
+            var movie = Getmovies().SingleOrDefault(c => c.Id == id);
+
+            if (movie == null)
+                return HttpNotFound();
+
+            return View(movie); 
+        }
+
+        private IEnumerable<Movie> Getmovies()
+        {
+            return new List<Movie>
             {
                 new Movie{Id=1,Name = "Blood on the Alter"},
                 new Movie {Id=2,Name= "Hello World"}
             };
-
-           /* movie.Find(Id);*/
-
-            return View();
         }
     }
 }
